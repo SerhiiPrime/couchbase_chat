@@ -10,10 +10,8 @@ import com.couchbase.lite.Query;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 import java.io.Serializable;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -33,8 +31,8 @@ public class Message implements Serializable {
     @JsonProperty("text")
     private String mText;
 
-    @JsonProperty("time")
-    private Date mTimeStamp;
+//    @JsonProperty("time")
+//    private Date mTimeStamp;
 
     public Message() {
     }
@@ -44,11 +42,11 @@ public class Message implements Serializable {
 
         this.mText = String.valueOf(map.get("text"));
 
-        try {
-            this.mTimeStamp = formatter.parse(map.get("time").toString());
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            this.mTimeStamp = formatter.parse(map.get("time").toString());
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
     }
 
 
@@ -81,7 +79,7 @@ public class Message implements Serializable {
         Map<String, Object> properties = new HashMap<String, Object>();
         properties.put("type", DOC_TYPE);
         properties.put("text", text);
-        properties.put("time", currentTimeString);
+//        properties.put("time", currentTimeString);
 
         Document document = database.createDocument();
 
@@ -100,9 +98,9 @@ public class Message implements Serializable {
         return mText;
     }
 
-    public Date getTimeStamp() {
-        return mTimeStamp;
-    }
+//    public Date getTimeStamp() {
+//        return mTimeStamp;
+//    }
 
     public static SimpleDateFormat getFormatter() {
         return formatter;
